@@ -10,7 +10,7 @@ iris = load_data()
 st.title('IRIS 데이터 예제')
 st.html(
 '''    
-<div style="border:1px solid blue">
+<div style="border:1px dotted blue">
     이 예제는 seaborn iris 데이터를 다양한 형식으로 보여주는 것입니다.
 </div>
 ''')

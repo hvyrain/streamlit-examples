@@ -22,10 +22,18 @@ all_sheets = load_sales_data(file_path)
 if all_sheets is not None:
     # 사이드바에서 분석할 시트 선택
     sheet_names = list(all_sheets.keys())
-    selected_sheet = st.sidebar.selectbox('분석할 시트를 선택하세요:', sheet_names)
-    df = all_sheets[selected_sheet]
+    
+    # "전체 시트 통합 분석" 옵션 추가
+    selection_options = ["전체 시트 통합 분석"] + sheet_names
+    selected_sheet = st.sidebar.selectbox('분석할 시트를 선택하세요:', selection_options)
 
-    st.info(f"현재 분석 중인 시트: **{selected_sheet}**")
+    if selected_sheet == "전체 시트 통합 분석":
+        # 모든 시트의 데이터를 하나로 병합
+        df = pd.concat(all_sheets.values(), ignore_index=True)
+        st.info("💡 모든 시트의 데이터를 하나로 통합하여 분석 중입니다.")
+    else:
+        df = all_sheets[selected_sheet]
+        st.info(f"현재 분석 중인 시트: **{selected_sheet}**")
 
     # 1. 데이터 요약 정보
     st.header('📈 데이터 요약')

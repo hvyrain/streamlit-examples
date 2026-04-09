@@ -27,14 +27,12 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
 
 with tab1:
     st.header('원본 데이터')
-    if st.checkbox('데이터프레임 보기'):
-        st.dataframe(iris)
+    st.dataframe(iris)
 
 with tab2:
     st.header("종별 평균")
-    if st.checkbox('종별 평균값 보기'):
-        st.dataframe(iris.groupby('species').mean())
-        st.bar_chart(iris.groupby('species').mean())
+    st.dataframe(iris.groupby('species').mean())
+    st.bar_chart(iris.groupby('species').mean())
 
 with tab3:
     st.header('Box Plot 예제')
